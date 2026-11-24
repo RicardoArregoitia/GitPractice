@@ -1,0 +1,4 @@
+target/
+.DS_Store
+mail.properties
+src/main/resources/application-local.yml
