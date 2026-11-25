@@ -146,10 +146,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 	private Session openSession(final String user) throws MessagingException {
 		String host = config("mail.host");
 		String port = config("mail.port");
-		String authMode = config("AUTH_MODE");
-		if (authMode.isEmpty()) {
-			authMode = "password";
-		}
+		String authMode = config("mail.azure.tenant.id").isEmpty() ? "password" : "oauth2";
 
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", host);

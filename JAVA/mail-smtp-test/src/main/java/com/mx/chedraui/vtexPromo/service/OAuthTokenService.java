@@ -42,10 +42,10 @@ public class OAuthTokenService {
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
 	public String accessToken() throws MessagingException {
-		String tenantId = required("AZURE_TENANT_ID");
-		String clientId = required("AZURE_CLIENT_ID");
-		String clientSecret = required("AZURE_CLIENT_SECRET");
-		String scope = config("AZURE_OAUTH_SCOPE");
+		String tenantId = required("mail.azure.tenant.id");
+		String clientId = required("mail.azure.client.id");
+		String clientSecret = required("mail.azure.client.secret");
+		String scope = config("mail.azure.oauth.scope");
 		if (scope.isEmpty()) {
 			scope = DEFAULT_SCOPE;
 		}
@@ -104,7 +104,7 @@ public class OAuthTokenService {
 	private String required(String key) throws MessagingException {
 		String value = config(key);
 		if (value.isEmpty()) {
-			throw new MessagingException("Falta " + key + " para AUTH_MODE=oauth2");
+			throw new MessagingException("Falta " + key + " en dbo.CONFIGURATIONS");
 		}
 		return value;
 	}

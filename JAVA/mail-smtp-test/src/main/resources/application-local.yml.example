@@ -1,15 +1,11 @@
 # Copia este archivo a application-local.yml. Ese archivo no se versiona.
-# Mismas llaves que dbo.CONFIGURATIONS en vtex promo.
-mail.host: smtp.office365.com
-mail.port: "587"
-mail.user: no-reply@chedraui.com.mx
-mail.password: ""
-mail.from: no-reply@chedraui.com.mx
-mail.logger: no-reply@chedraui.com.mx
-
-# password | oauth2. XOAUTH2 usa smtp.office365.com y puerto 587.
-AUTH_MODE: oauth2
-AZURE_TENANT_ID: ""
-AZURE_CLIENT_ID: ""
-AZURE_CLIENT_SECRET: ""
-AZURE_OAUTH_SCOPE: https://outlook.office365.com/.default
+# El correo y OAuth salen de dbo.CONFIGURATIONS:
+# mail.host, mail.port, mail.user, mail.password, mail.from, mail.logger
+# mail.azure.tenant.id, mail.azure.client.id, mail.azure.client.secret, mail.azure.oauth.scope
+spring:
+  datasource:
+    sql:
+      driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      username: userAppsProd
+      password: ""
+      jdbcUrl: "jdbc:sqlserver://chazfunctions.database.windows.net:1433;database=CHAZFUNCTIONSPR;encrypt=true;trustServerCertificate=false"
